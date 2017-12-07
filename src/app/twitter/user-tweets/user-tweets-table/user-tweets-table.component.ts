@@ -1,5 +1,6 @@
-import {Component, Input} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {TweetModel} from '../../../models/tweet.model';
+import {UserInfoModel} from '../../../models/userInfo.model';
 
 @Component({
   selector: 'app-user-tweets-table',
@@ -9,6 +10,5 @@ import {TweetModel} from '../../../models/tweet.model';
 export class UserTweetsTableComponent {
 
   @Input() tweets: TweetModel[];
-  @Input() userInfo: any;
-
+  @Input('userInfo') userInfo: UserInfoModel;
 }

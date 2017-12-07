@@ -3,6 +3,7 @@
   <tr>
     <th>Id</th>
     <th>Author</th>
+    <th>Author Full Name</th>
     <th>Content</th>
   </tr>
   </thead>
@@ -10,11 +11,14 @@
   <tr *ngFor="let tweet of tweets">
     <td>{{tweet.id}}</td>
     <td>{{tweet.author}}</td>
+    <td>{{tweet.authorFullName}}</td>
     <td>{{tweet.content}}</td>
   </tr>
   </tbody>
 </table>
-
+<hr>
 <div>
-  {{this.$userInfo}}
+  <p>Number of Followers: {{this.userInfo ? this.userInfo.numberOfFollowers : ''}}</p>
+  <p>Number of Tweets: {{this.userInfo ? this.userInfo.numberOfTweets : ''}}</p>
+  <p>Following: {{this.userInfo ? this.userInfo.numberOfUsersFollowing : ''}}</p>
 </div>

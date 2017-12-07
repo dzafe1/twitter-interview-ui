@@ -5,6 +5,7 @@ import {Observable} from "rxjs/Observable";
 import {AuthService} from "../../../services/auth.service";
 import {ActivatedRoute, Params} from "@angular/router";
 import {UserService} from "../../../services/user.service";
+import {UserInfoModel} from "../../../models/userInfo.model";
 
 @Component({
   selector: 'app-user-tweets-view',
@@ -14,7 +15,7 @@ import {UserService} from "../../../services/user.service";
 export class UserTweetsViewComponent implements OnInit {
 
   $tweets: Observable<TweetModel[]>;
-  $userInfo: any;
+  $userInfo: Observable<UserInfoModel>;
   userName: string;
 
   constructor(private tweetService: TweetService, private userService: UserService, private activatedRoute: ActivatedRoute) {
@@ -24,7 +25,7 @@ export class UserTweetsViewComponent implements OnInit {
     this.activatedRoute.params.subscribe((params: Params) => {
       this.userName = params['username'];
       this.$tweets = this.tweetService.fetchForUser(this.userName);
-      this.userService.fetchUserInfo(this.userName).subscribe((res) => this.$userInfo = res);
+      this.$userInfo = this.userService.fetchUserInfo(this.userName);
     });
   }
 
